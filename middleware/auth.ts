@@ -12,9 +12,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   // If the user is not authenticated, redirect them to the login page
-  // if (!authStore.user && to.path !== '/login') {  
-  //   return navigateTo('/login')
-  // }
+  if (!authStore.user && to.path !== '/login') {  
+    return navigateTo('/login')
+  }
 
   if (!isAdmin && to.path === '/admin') {
     return navigateTo('/')

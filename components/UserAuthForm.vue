@@ -13,9 +13,14 @@ const authStore = useAuthStore()
 const onSubmit = async () => {
   isLoading.value = true
 
-  await authStore.login(email.value, password.value)
-
-  router.push('/')
+  try {
+    await authStore.login(email.value, password.value)
+    router.push('/')
+  } catch (e) {
+  
+  } finally {
+    isLoading.value = false
+  }
 }
 </script>
 

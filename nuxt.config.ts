@@ -1,15 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2024-04-03',
+
   devtools: { enabled: true },
 
   routeRules: {
     // prerender index route by default
     '/': { prerender: true },
   },
+  
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', 'nuxt-viewport', '@pinia/nuxt',],
 
   ssr: false,
-  css: ['~/assets/base.css', '~/node_modules/@nordhealth/css/lib/nord.css'],
-
+  
   runtimeConfig: {
     public: {
       APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
@@ -17,18 +20,16 @@ export default defineNuxtConfig({
       APPWRITE_GIFT_CARD_COLLECTION_ID: process.env.APPWRITE_GIFT_CARD_COLLECTION_ID
     }
   },
-
-  vite: {
-    vue: {
-      template: {
-        compilerOptions: {
-          // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes('-')
-        }
-      }
-    }
-  },
-
-  compatibilityDate: '2024-09-07',
-  modules: ['@pinia/nuxt', '@nuxt/test-utils/module', 'nuxt-viewport'],
-});
+  
+  shadcn: {
+    /**
+     * Prefix for all the imported component
+     */
+    prefix: '',
+    /**
+     * Directory that the component lives in.
+     * @default "./components/ui"
+     */
+    componentDir: './components/ui'
+  }
+})

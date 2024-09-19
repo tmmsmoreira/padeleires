@@ -31,9 +31,7 @@ export const useAuthStore = defineStore('auth', {
       try {
         const response = await account.value?.get()
         this.user = response
-        console.log(this.user)
       } catch (error: any) {
-        console.log('entrei')
         if (error.code === 401) {
           console.error('User not authenticated:', error.message)
           this.user = undefined

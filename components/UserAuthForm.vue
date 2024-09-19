@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
+import * as z from 'zod'
+import { toTypedSchema } from '@vee-validate/zod'
 
 import { LoaderCircle } from 'lucide-vue-next'
 
@@ -10,58 +12,76 @@ const isLoading = ref(false)
 const router = useRouter()
 const authStore = useAuthStore()
 
-const onSubmit = async () => {
+const userAuthFormSchema = toTypedSchema(z.object({
+  email: z
+    .string({
+      required_error: 'Please insert your email.',
+    })
+    .email(),
+  password: z
+    .string({
+      required_error: 'Please insert your password.',
+    })
+}))
+
+const { handleSubmit, resetForm } = useForm({
+  validationSchema: userAuthFormSchema,
+})
+
+const onSubmit = handleSubmit(async () => {
   isLoading.value = true
 
   try {
     await authStore.login(email.value, password.value)
     router.push('/')
   } catch (e) {
-  
+    
   } finally {
     isLoading.value = false
   }
-}
+})
+
 </script>
 
 <template>
   <div :class="cn('grid gap-6', $attrs.class ?? '')">
-    <form @submit.prevent="onSubmit">
-      <div class="grid gap-2">
-        <div class="grid gap-1">
-          <Label class="sr-only" for="email">
-            Email
-          </Label>
-          <Input
-            v-model="email"
-            id="email"
-            placeholder="name@example.com"
-            type="email"
-            auto-capitalize="none"
-            auto-complete="email"
-            auto-correct="off"
-            :disabled="isLoading"
-          />
-        </div>
-        <div class="grid gap-1">
-          <Label class="sr-only" for="email">
-            Password
-          </Label>
-          <Input
-            v-model="password"
-            id="password"
-            placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-            type="password"
-            :disabled="isLoading"
-          />
-        </div>
-        <Button :disabled="isLoading">
-          <LoaderCircle v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
-          Login
-        </Button>
-      </div>
+    <form @submit="onSubmit" class="grid gap-2" :disabled="isLoading">
+      <FormField v-slot="{ componentField }" name="email" class="grid gap-1">
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+          <FormControl>
+            <Input
+              v-model="email"
+              v-bind="componentField"
+              id="email"
+              placeholder="name@example.com"
+              type="email"
+            />
+          </FormControl>
+          <FormMessage class="text-xs" />
+        </FormItem>
+      </FormField>
+      <FormField v-slot="{ componentField }" name="password" class="grid gap-1">
+        <FormItem>
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <Input
+              v-model="password"
+              v-bind="componentField"
+              id="password"
+              placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+              type="password"
+            />
+          </FormControl>
+          <FormMessage class="text-xs"/>
+        </FormItem>
+      </FormField>
+      <Button :disabled="isLoading">
+        <LoaderCircle v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
+        Login
+      </Button>
     </form>
-    <div class="relative">
+    <!-- <div class="relative">
       <div class="absolute inset-0 flex items-center">
         <span class="w-full border-t" />
       </div>
@@ -73,8 +93,7 @@ const onSubmit = async () => {
     </div>
     <Button variant="outline" type="button" :disabled="isLoading">
       <LoaderCircle v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
-      <!-- <GitHubLogo v-else class="mr-2 h-4 w-4" /> -->
       Google
-    </Button>
+    </Button> -->
   </div>
 </template>

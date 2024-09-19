@@ -9,7 +9,13 @@ export default defineNuxtConfig({
     '/': { prerender: true },
   },
   
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', 'nuxt-viewport', '@pinia/nuxt',],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    'nuxt-viewport',
+    '@pinia/nuxt',
+    '@vee-validate/nuxt'
+  ],
 
   ssr: false,
   

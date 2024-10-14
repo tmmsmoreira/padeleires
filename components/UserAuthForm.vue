@@ -35,25 +35,32 @@ const onSubmit = handleSubmit(async () => {
     await authStore.login(email.value, password.value)
     router.push('/')
   } catch (e) {
-    
+
   } finally {
     isLoading.value = false
   }
 })
-
 </script>
 
 <template>
   <div :class="cn('grid gap-6', $attrs.class ?? '')">
-    <form @submit="onSubmit" class="grid gap-2" :disabled="isLoading">
-      <FormField v-slot="{ componentField }" name="email" class="grid gap-1">
+    <form
+      class="grid gap-2"
+      :disabled="isLoading"
+      @submit="onSubmit"
+    >
+      <FormField
+        v-slot="{ componentField }"
+        name="email"
+        class="grid gap-1"
+      >
         <FormItem>
           <FormLabel>Email</FormLabel>
           <FormControl>
             <Input
-              v-model="email"
               v-bind="componentField"
               id="email"
+              v-model="email"
               placeholder="name@example.com"
               type="email"
             />
@@ -61,23 +68,30 @@ const onSubmit = handleSubmit(async () => {
           <FormMessage class="text-xs" />
         </FormItem>
       </FormField>
-      <FormField v-slot="{ componentField }" name="password" class="grid gap-1">
+      <FormField
+        v-slot="{ componentField }"
+        name="password"
+        class="grid gap-1"
+      >
         <FormItem>
           <FormLabel>Password</FormLabel>
           <FormControl>
             <Input
-              v-model="password"
               v-bind="componentField"
               id="password"
+              v-model="password"
               placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
               type="password"
             />
           </FormControl>
-          <FormMessage class="text-xs"/>
+          <FormMessage class="text-xs" />
         </FormItem>
       </FormField>
       <Button :disabled="isLoading">
-        <LoaderCircle v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
+        <LoaderCircle
+          v-if="isLoading"
+          class="mr-2 h-4 w-4 animate-spin"
+        />
         Login
       </Button>
     </form>

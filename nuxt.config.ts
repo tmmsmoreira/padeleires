@@ -8,25 +8,26 @@ export default defineNuxtConfig({
     // prerender index route by default
     '/': { prerender: true },
   },
-  
+
   modules: [
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     'nuxt-viewport',
     '@pinia/nuxt',
-    '@vee-validate/nuxt'
+    '@vee-validate/nuxt',
+    '@nuxt/eslint'
   ],
 
   ssr: false,
-  
+
   runtimeConfig: {
     public: {
       APPWRITE_PROJECT_ID: process.env.APPWRITE_PROJECT_ID,
       APPWRITE_DATABASE_ID: process.env.APPWRITE_DATABASE_ID,
-      APPWRITE_GIFT_CARD_COLLECTION_ID: process.env.APPWRITE_GIFT_CARD_COLLECTION_ID
+      APPWRITE_PLAYERS_COLLECTION_ID: process.env.APPWRITE_PLAYERS_COLLECTION_ID
     }
   },
-  
+
   shadcn: {
     /**
      * Prefix for all the imported component

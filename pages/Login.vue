@@ -3,7 +3,6 @@ import UserAuthForm from '@/components/UserAuthForm.vue'
 import { cn } from '@/lib/utils'
 
 definePageMeta({
-  middleware: 'auth',
   layout: 'full-page'
 })
 </script>
@@ -48,8 +47,8 @@ definePageMeta({
         </blockquote>
       </div>
     </div>
-    <div class="lg:p-8">
-      <div class="relative lg:hidden z-20 flex pb-10 justify-center items-center text-2xl font-medium">
+    <div class="lg:p-8 ">
+      <div class="absolute top-0 left-0 w-full lg:hidden flex py-10 justify-center items-center text-2xl font-medium">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

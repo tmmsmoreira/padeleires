@@ -8,7 +8,7 @@ const { user, userInitials, logout } = authStore
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" class="relative h-8 w-8 rounded-full">
-        <Avatar class="h-8 w-8">
+        <Avatar class="h-8 w-8 bg-primary">
           <AvatarFallback>{{ userInitials }}</AvatarFallback>
         </Avatar>
       </Button>

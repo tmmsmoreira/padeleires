@@ -10,47 +10,27 @@ const { isAdmin } = authStore
 </script>
 
 <template>
-  <div class="hidden h-full flex-col md:flex">
+  <div class="h-full flex-col md:flex">
     <div class="container flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
-      <!-- <Sheet class="hidden">
-        <SheetTrigger as-child>
-          <Button variant="outline">
-            <Menu />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left">
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-    
-          <SheetFooter>
-            <SheetClose as-child>
-    
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet> -->
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        class="mr-2 h-6 w-6"
-      >
-        <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-      </svg>
-      <a href="/">
-        <h2 class="text-lg font-medium">
-          Padeleires
-        </h2>
-      </a>
+      <div class="flex space-x-2 items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          class="h-6 w-6"
+        >
+          <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+        </svg>
+        <a href="/">
+          <h2 class="text-lg font-medium">
+            Padeleires
+          </h2>
+        </a>
+      </div>
       <div class="ml-auto flex w-full space-x-2 items-center sm:justify-end">
         <NavigationMenu>
           <NavigationMenuList>

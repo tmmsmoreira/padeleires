@@ -13,3 +13,13 @@ export interface IPlayer extends Models.Document {
   points: number
   ranking: number
 }
+
+export interface ICompetition extends Models.Document {
+  datetime: Date
+  location: ILocation
+}
+
+export interface ILocation extends Models.Document {
+  name: string
+  fields: number
+}

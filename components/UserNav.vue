@@ -34,7 +34,6 @@ const { user, userInitials, logout } = authStore
           Settings
           <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
         </DropdownMenuItem>
-        <DropdownMenuItem>New Team</DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="logout">

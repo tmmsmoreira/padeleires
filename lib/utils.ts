@@ -12,3 +12,10 @@ export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref
       ? updaterOrValue(ref.value)
       : updaterOrValue
 }
+
+export function getFormattedDate(date: string) {
+  return new Intl.DateTimeFormat(navigator.language, { 
+    dateStyle: 'short',
+    timeStyle: 'short'
+  }).format(new Date(date))
+}

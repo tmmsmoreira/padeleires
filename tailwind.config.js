@@ -84,6 +84,10 @@ module.exports = {
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
       },
+      height: {
+        //2.5rem (navbar h-10) - 1rem (py-2) - 1px (separator);
+        "without-menubar": "calc(100vh - 4rem - 1px)",
+      }
     },
   },
   plugins: [animate],

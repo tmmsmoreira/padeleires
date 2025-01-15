@@ -8,6 +8,9 @@ interface DataTableViewOptionsProps {
 
 const props = defineProps<DataTableViewOptionsProps>()
 
+const router = useRouter()
+const route = useRoute()
+
 const columns = computed(() => props.table.getAllColumns()
   .filter(
     column =>
@@ -48,6 +51,7 @@ const columns = computed(() => props.table.getAllColumns()
       variant="outline"
       size="sm"
       class="ml-auto hidden h-8 lg:flex"
+      @click="router.push(`${route.path}/create`)"
     >
       <Plus class="mr-2 h-4 w-4" />
       Create

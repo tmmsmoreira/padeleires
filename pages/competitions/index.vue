@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { h } from 'vue'
 import type { ColumnDef } from '@tanstack/vue-table'
-import { useCompetitionsStore } from "../stores/competitions"
+import { useCompetitionsStore } from "../../stores/competitions"
 import { Checkbox } from '@/components/ui/checkbox'
 import DataTableColumnHeader from '@/components/DataTable/DataTableColumnHeader.vue'
 import DataTableRowActions from '@/components/DataTable/DataTableRowActions.vue'
@@ -10,6 +10,7 @@ import { getFormattedDate } from "@/lib/utils"
 
 const competitionsStore = useCompetitionsStore()
 const { list, loading } = storeToRefs(competitionsStore)
+const router = useRouter()
 
 const columns: ColumnDef<ICompetition>[] = [
   {
@@ -65,6 +66,7 @@ const columns: ColumnDef<ICompetition>[] = [
 ]
 
 competitionsStore.listCompetitions()
+
 </script>
 
 <template>
@@ -79,7 +81,11 @@ competitionsStore.listCompetitions()
         </p>
       </div>
     </div>
-    <DataTable :data="list" :columns="columns" :loading="loading"/>
+    <DataTable 
+      :data="list" 
+      :columns="columns" 
+      :loading="loading"
+    />
   </div>
 </template>
 
